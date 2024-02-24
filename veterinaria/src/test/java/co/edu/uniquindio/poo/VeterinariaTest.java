@@ -7,9 +7,11 @@
  */
 package co.edu.uniquindio.poo;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -26,18 +28,16 @@ public class VeterinariaTest {
     public void VeterinariaTestDatosCompletos() {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos completos");
         
-        Mascota miMascota = new Mascota("Paco","Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
+        Mascota Mascota = new Mascota("Paco","Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
 
-        System.out.println("Nombre: " + miMascota.nombre());
-        System.out.println("Especie: " + miMascota.especie());
-        System.out.println("Raza: " + miMascota.raza());
-        System.out.println("Edad: " + miMascota.edad());
-        System.out.println("Género: " + miMascota.genero());
-        System.out.println("Color: " + miMascota.color());
-        System.out.println("Peso: " + miMascota.peso() + " kg");
-        
-        assertNotNull(miMascota);
-
+         assertEquals("Paco", Mascota.nombre());
+         assertEquals("Canino", Mascota.raza());
+         assertEquals("Bulldozer", Mascota.especie());
+         assertEquals(4, Mascota.edad());
+         assertEquals("Masculino", Mascota.genero());
+         assertEquals("Amarillo con manchas", Mascota.color());
+         assertEquals(24.5, Mascota.peso());
+         
         LOG.info("Finalizando test Veterinaria con datos completos");
     }
     /*
@@ -45,64 +45,62 @@ public class VeterinariaTest {
      */
     @Test
     public void VeterinariaTestDatosNulos() {
-        LOG.info("Iniciado test Trabajo Veterinaria Con datos completos");
+        LOG.info("Iniciado test Trabajo Veterinaria Con datos Nulos");
         
-        Mascota miMascota = new Mascota(null, null, null, 0, null, null, null);
-        
-        System.out.println("Nombre: " + miMascota.nombre());
-        System.out.println("Especie: " + miMascota.especie());
-        System.out.println("Raza: " + miMascota.raza());
-        System.out.println("Edad: " + miMascota.edad());
-        System.out.println("Género: " + miMascota.genero());
-        System.out.println("Color: " + miMascota.color());
-        System.out.println("Peso: " + miMascota.peso() + " kg");
-        
-        assertNull(miMascota);
-    
-        LOG.info("Finalizando test Veterinaria con datos completos");
+       assertThrows(Throwable.class, ()-> new Mascota(null, null, null, (byte) 0, null, null, (double) 0));
+
+  
+        LOG.info("Finalizando test Veterinaria con datos Nulos");
     }
     /**
      * Primera prueba con datos incompletos
      */
     @Test
     public void VeterinariaTestDatosIncompletos() {
-        LOG.info("Iniciado test Trabajo Veterinaria Con datos completos");
-        
-        Mascota miMascota = new Mascota("","Canino", "Bulldozer", (byte) 4, "", "Amarillo con manchas", 24.5);
+        LOG.info("Iniciado test Trabajo Veterinaria Con datos Incompletos");
+          
+        Mascota Mascota = new Mascota("Paco", "", "Bulldozer", (byte) 4, "", "", (double) 24.5);
 
-        System.out.println("Nombre: " + miMascota.nombre());
-        System.out.println("Especie: " + miMascota.especie());
-        System.out.println("Raza: " + miMascota.raza());
-        System.out.println("Edad: " + miMascota.edad());
-        System.out.println("Género: " + miMascota.genero());
-        System.out.println("Color: " + miMascota.color());
-        System.out.println("Peso: " + miMascota.peso() + " kg");
-        
-        assertNotNull(miMascota);
+        assertEquals("Paco", Mascota.nombre());
+        assertEquals("Canino", Mascota.raza());
+        assertEquals("Bulldozer", Mascota.especie());
+        assertEquals(4, Mascota.edad());
+        assertEquals("Masculino", Mascota.genero());
+        assertEquals("Amarillo con manchas", Mascota.color());
+        assertEquals(24.5, Mascota.peso());
 
-        LOG.info("Finalizando test Veterinaria con datos completos");
+        LOG.info("Finalizando test Veterinaria con datos Incompletos");
     }
+
     /**
      * Primera prueba con datos negativos en numeros
      */
+
     @Test
     public void VeterinariaTestDatosNegativos() {
-        LOG.info("Iniciado test Trabajo Veterinaria Con datos completos");
-        
-        Mascota miMascota = new Mascota("Paco","Canino", "Bulldozer", (byte) -4, "Masculino", "Amarillo con manchas",  -24.5);
+        LOG.info("Iniciado test Trabajo Veterinaria Con datos numericos negativos");
 
-        System.out.println("Nombre: " + miMascota.nombre());
-        System.out.println("Especie: " + miMascota.especie());
-        System.out.println("Raza: " + miMascota.raza());
-        System.out.println("Edad: " + miMascota.edad());
-        System.out.println("Género: " + miMascota.genero());
-        System.out.println("Color: " + miMascota.color());
-        System.out.println("Peso: " + miMascota.peso() + " kg");
         
-        assertNotNull(miMascota);
-        assert miMascota.edad() >= 0 : "los valores de edad no pueden ser negativos";
-        assert miMascota.peso() >= 0:  "los valores de peso no pueden ser negativos";
+        assertThrows(Throwable.class, () -> {
+            Mascota miMascota = new Mascota("Paco", "Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", (double) -24);
+            assertTrue(miMascota.peso() >= 0,"EL numero es negativo"); 
+            assertFalse(miMascota.peso() >= 0, "el numero es nega");
+        });
+        
+        
 
-        LOG.info("Finalizando test Veterinaria con datos completos");
+        LOG.info("Finalizando test Veterinaria con datos numericos negativos");
+    }
+
+    @Test
+    public void VeterinariaTestEspeciesInvalidad() {
+        LOG.info("Iniciado test Trabajo Veterinaria Con Especies invalidas");
+
+        Mascota Mascota = new Mascota("Paco","Bulldozer", "Leon", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
+        
+        assertEquals("Canino" , Mascota.especie());
+        assertEquals("Felino" , Mascota.especie());
+
+        LOG.info("Finalizando test Veterinaria Con Especies invalidas");
     }
 }
