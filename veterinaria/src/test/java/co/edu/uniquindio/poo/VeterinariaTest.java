@@ -8,10 +8,7 @@
 package co.edu.uniquindio.poo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -80,15 +77,8 @@ public class VeterinariaTest {
     public void VeterinariaTestDatosNegativos() {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos numericos negativos");
 
+        assertThrows(Throwable.class, () -> new Mascota("Paco","Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", -24.5));
         
-        assertThrows(Throwable.class, () -> {
-            Mascota miMascota = new Mascota("Paco", "Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", (double) -24);
-            assertTrue(miMascota.peso() >= 0,"EL numero es negativo"); 
-            assertFalse(miMascota.peso() >= 0, "el numero es nega");
-        });
-        
-        
-
         LOG.info("Finalizando test Veterinaria con datos numericos negativos");
     }
 

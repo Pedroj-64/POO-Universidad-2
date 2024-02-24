@@ -8,7 +8,7 @@ public record Mascota(String nombre,String raza,String especie,byte edad,String 
     assert raza !=null ;
     assert especie !=null ;
     assert genero !=null ;
-    assert peso >= 0;
+    assert peso >= 0.0;
 
  }
 }
