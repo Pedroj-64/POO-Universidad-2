@@ -25,11 +25,11 @@ public class VeterinariaTest {
     public void VeterinariaTestDatosCompletos() {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos completos");
         
-        Mascota Mascota = new Mascota("Paco","Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
+        Mascota Mascota = new Mascota("Paco","Bulldozer", "Canino", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
 
          assertEquals("Paco", Mascota.nombre());
-         assertEquals("Canino", Mascota.raza());
-         assertEquals("Bulldozer", Mascota.especie());
+         assertEquals("Bulldozer", Mascota.raza());
+         assertEquals("Canino", Mascota.especie());
          assertEquals(4, Mascota.edad());
          assertEquals("Masculino", Mascota.genero());
          assertEquals("Amarillo con manchas", Mascota.color());
@@ -56,11 +56,11 @@ public class VeterinariaTest {
     public void VeterinariaTestDatosIncompletos() {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos Incompletos");
           
-        Mascota Mascota = new Mascota("Paco", "", "Bulldozer", (byte) 4, "", "", (double) 24.5);
+        Mascota Mascota = new Mascota("Paco", "", "Felino", (byte) 4, "", "", (double) 24.5);
 
         assertEquals("Paco", Mascota.nombre());
-        assertEquals("Canino", Mascota.raza());
-        assertEquals("Bulldozer", Mascota.especie());
+        assertEquals("Bulldozer", Mascota.raza());
+        assertEquals("Felino", Mascota.especie());
         assertEquals(4, Mascota.edad());
         assertEquals("Masculino", Mascota.genero());
         assertEquals("Amarillo con manchas", Mascota.color());
@@ -77,7 +77,7 @@ public class VeterinariaTest {
     public void VeterinariaTestDatosNegativos() {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos numericos negativos");
 
-        assertThrows(Throwable.class, () -> new Mascota("Paco","Canino", "Bulldozer", (byte) 4, "Masculino", "Amarillo con manchas", -24.5));
+        assertThrows(Throwable.class, () -> new Mascota("Paco","Bulldozer", "Canino", (byte) 4, "Masculino", "Amarillo con manchas", -24.5));
         
         LOG.info("Finalizando test Veterinaria con datos numericos negativos");
     }
