@@ -45,7 +45,7 @@ public class VeterinariaTest {
         LOG.info("Iniciado test Trabajo Veterinaria Con datos Nulos");
         
        assertThrows(Throwable.class, ()-> new Mascota(null, null, null, (byte) 0, null, null, (double) 0));
-
+       
   
         LOG.info("Finalizando test Veterinaria con datos Nulos");
     }
@@ -81,9 +81,11 @@ public class VeterinariaTest {
         
         LOG.info("Finalizando test Veterinaria con datos numericos negativos");
     }
-
+    /*
+     * Primera prueba con datos de especies invalidad
+     */
     @Test
-    public void VeterinariaTestEspeciesInvalidad() {
+    public void VeterinariaTestEspeciesInvalidas() {
         LOG.info("Iniciado test Trabajo Veterinaria Con Especies invalidas");
 
         Mascota Mascota = new Mascota("Paco","Bulldozer", "Leon", (byte) 4, "Masculino", "Amarillo con manchas", 24.5);
