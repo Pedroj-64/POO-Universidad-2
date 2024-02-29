@@ -7,11 +7,11 @@ public record Mascota(String nombre,String raza,String especie,byte edad,String 
 
  public Mascota{
 
-    assert nombre !=null ;
-    assert raza !=null ;
-    assert especie !=null ;
-    assert genero !=null ;
-    assert peso >= 0.0;
+    assert !nombre.isBlank();
+    assert !raza.isBlank() ;
+    assert !especie.isBlank() ;
+    assert !genero.isBlank() ;
+    assert peso > 0.0;
 
  }
 }
