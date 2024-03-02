@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for simple App.
  */
-public class VeterinariaTest {
-    private static final Logger LOG = Logger.getLogger(VeterinariaTest.class.getName());
+public class MascotaTest {
+    private static final Logger LOG = Logger.getLogger(MascotaTest.class.getName());
 
     /**
      * Primera prueba con datos completos
