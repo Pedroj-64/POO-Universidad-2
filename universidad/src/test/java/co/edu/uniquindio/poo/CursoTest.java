@@ -66,7 +66,7 @@ public class CursoTest {
     }
 
     /**
-     * Prueba para verificar que sucede al agregar estudiante repetido
+     * Prueba para verificar que los datos de un curso no estén nulos
      */
     @Test
     public void agregarEstudianteRepetido() {
