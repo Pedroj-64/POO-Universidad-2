@@ -69,7 +69,7 @@ public class VeterinariaTest {
      * Prueba para verificar que no existan mascotas con ID repetida
      */
     @Test
-    public void agregarEstudianteRepetido() {
+    public void agregarMascotaRepetido() {
         LOG.info("Inicio de la prueba de agregar mascotas repetidas");
 
         var veterinaria = new Veterinaria("Amigos Peludos");
@@ -88,15 +88,15 @@ public class VeterinariaTest {
     public void obtenerMascotasMayoresA10Anios() {
         LOG.info("Inicio de la prueba para obtener mascotas mayores a 10 años");
 
-        Veterinaria veterinaria = new Veterinaria("Amigos Peludos");
-        Mascota mascota1 = new Mascota("Aquiles", "Gran danes aleman", "Masculino", (byte) 6, "Masculino", "Blanco", "89", 26.9);
-        Mascota mascota2 = new Mascota("Lenin", "Gato montes", "Felino", (byte) 12, "Femenino", "Amarillo", "90", 10.5);
-        Mascota mascota3 = new Mascota("Firulais", "Pastor alemán", "Masculino", (byte) 11, "Masculino", "Negro", "91", 15.2);
+        var  veterinaria = new Veterinaria("Amigos Peludos");
+        var  mascota_1 = new Mascota("Aquiles", "Gran danes aleman", "Canino", (byte) 6, "Masculino", "Blanco", "89", 26.9);
+        var  mascota_2 = new Mascota("Lenin", "Gato montes", "Felino", (byte) 12, "Femenino", "Amarillo", "90", 10.5);
+        var  mascota_3 = new Mascota("Firulais", "Pastor alemán", "Canino", (byte) 11, "Masculino", "Negro", "91", 15.2);
 
         // Agregar las mascotas a la veterinaria
-        veterinaria.registrarMascota(mascota1);
-        veterinaria.registrarMascota(mascota2);
-        veterinaria.registrarMascota(mascota3);
+        veterinaria.registrarMascota(mascota_1);
+        veterinaria.registrarMascota(mascota_2);
+        veterinaria.registrarMascota(mascota_3);
 
         // Obtener la lista de mascotas mayores a 10 años
         List<Mascota> mascotasMayoresA10 = veterinaria.getMascotasMayoresA10Anios();

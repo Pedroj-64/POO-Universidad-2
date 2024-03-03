@@ -75,7 +75,7 @@ public class Veterinaria {
     public List<Mascota> getMascotasMayoresA10Anios() {
         List<Mascota> mascotasMayoresA10 = new ArrayList<>();
 
-        for (Mascota mascota : mascotas) {
+        for (var mascota : mascotas) {
             if (mascota.edad() > 10) {
                 mascotasMayoresA10.add(mascota);
             }
