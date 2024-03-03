@@ -1,5 +1,10 @@
 /*
  * Clase tipo record para guardar informacion de la mascota atendida por la veterinaria
+ * @author Área de programación UQ
+ * @since 2024-03
+ * 
+ * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
+ *
  */
 package co.edu.uniquindio.poo;
 

@@ -1,8 +1,21 @@
+/*
+ * Clase que contiene informacion de la veterinaria para pruebas
+ *
+ * @author Área de programación UQ
+ * @since 2024-03
+ * 
+ * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
+ *
+ */
+
+
 package co.edu.uniquindio.poo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Veterinaria {
     private final String nombre;
@@ -55,4 +68,20 @@ public class Veterinaria {
     public Collection<Mascota> getMascotas(){
         return Collections.unmodifiableCollection(mascotas);
     }
+    /*
+     * 
+     * Metodo para obtener la lista de  mascotas mayores a 10 años
+     */
+    public List<Mascota> getMascotasMayoresA10Anios() {
+        List<Mascota> mascotasMayoresA10 = new ArrayList<>();
+
+        for (Mascota mascota : mascotas) {
+            if (mascota.edad() > 10) {
+                mascotasMayoresA10.add(mascota);
+            }
+        }
+
+        return mascotasMayoresA10;
+    }
 }
+

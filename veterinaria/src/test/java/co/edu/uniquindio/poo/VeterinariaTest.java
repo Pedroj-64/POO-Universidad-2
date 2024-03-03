@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -83,5 +84,27 @@ public class VeterinariaTest {
         LOG.info("Finalización de la prueba de agregar mascotas repetidas");
     }
 
-   
+    @Test
+    public void obtenerMascotasMayoresA10Anios() {
+        LOG.info("Inicio de la prueba para obtener mascotas mayores a 10 años");
+
+        Veterinaria veterinaria = new Veterinaria("Amigos Peludos");
+        Mascota mascota1 = new Mascota("Aquiles", "Gran danes aleman", "Masculino", (byte) 6, "Masculino", "Blanco", "89", 26.9);
+        Mascota mascota2 = new Mascota("Lenin", "Gato montes", "Felino", (byte) 12, "Femenino", "Amarillo", "90", 10.5);
+        Mascota mascota3 = new Mascota("Firulais", "Pastor alemán", "Masculino", (byte) 11, "Masculino", "Negro", "91", 15.2);
+
+        // Agregar las mascotas a la veterinaria
+        veterinaria.registrarMascota(mascota1);
+        veterinaria.registrarMascota(mascota2);
+        veterinaria.registrarMascota(mascota3);
+
+        // Obtener la lista de mascotas mayores a 10 años
+        List<Mascota> mascotasMayoresA10 = veterinaria.getMascotasMayoresA10Anios();
+
+        // Verificar que la lista contiene las mascotas correctas
+        assertEquals(2, mascotasMayoresA10.size()); // Debería haber 2 mascotas mayores a 10 años
+
+        LOG.info("Finalización de la prueba para obtener mascotas mayores a 10 años");
+    }
 }
+   
