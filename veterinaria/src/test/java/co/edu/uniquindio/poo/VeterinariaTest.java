@@ -106,5 +106,12 @@ public class VeterinariaTest {
 
         LOG.info("Finalización de la prueba para obtener mascotas mayores a 10 años");
     }
+    @Test
+    public void getMascota(){
+        
+    
+
+
+    }
 }
    
