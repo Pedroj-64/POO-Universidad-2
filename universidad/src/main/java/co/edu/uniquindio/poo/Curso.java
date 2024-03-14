@@ -2,7 +2,10 @@ package co.edu.uniquindio.poo;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Curso {
     private final String nombre;
@@ -33,7 +36,7 @@ public class Curso {
      * 
      * @param estudiante Estudiante que se desea agregar
      */
-    public void registrarEstudiante(Estudiante estudiante) {
+    public void agregarEstudiante(Estudiante estudiante) {
         assert validarNumeroIdentificacionExiste(estudiante.numeroIdentificacion()) == false
                 : "El número de identificación ya existe.";
         estudiantes.add(estudiante);
@@ -45,15 +48,10 @@ public class Curso {
      * @param numeroIdenficacion Número de identificación del estudiante a buscar
      * @return Estudiante con el número de indicación indicado o null
      */
-    public Estudiante getEstudiante(String numeroIdenficacion) {
-        Estudiante estudianteInteres = null;
+    public Optional<Estudiante> getEstudiante(String numeroIdenficacion) {
+        Predicate<Estudiante> condicion = estudiante -> estudiante.numeroIdentificacion().equals(numeroIdenficacion);
 
-        for (Estudiante estudiante : estudiantes) {
-            if (estudiante.numeroIdentificacion().equals(numeroIdenficacion)) {
-                estudianteInteres = estudiante;
-            }
-        }
-        return estudianteInteres;
+        return estudiantes.stream().filter(condicion).findAny();
     }
 
     /**
@@ -65,7 +63,39 @@ public class Curso {
         return Collections.unmodifiableCollection(estudiantes);
     }
 
-   
+    /**
+     * Método para obtener la colección NO modificable de los estudiantes del curso en orden alfabético
+     * 
+     * @return la colección NO modificable de los estudiantes del curso en orden alfabético
+     */
+    public Collection<Estudiante> getListadoAlfabetico() {
+        var comparador = Comparator.comparing(Estudiante::nombres);
+        var estudiantesOrdenados = estudiantes.stream().sorted(comparador).toList();
+        return Collections.unmodifiableCollection(estudiantesOrdenados);
+    }
+
+    /**
+     * Método para obtener la colección NO modificable de los estudiantes del curso en orden descendente de la edad
+     * 
+     * @return la colección NO modificable de los estudiantes del curso en descendente por edad.
+     */
+    public Collection<Estudiante> getListadoEdadDescente() {
+        var comparador = Comparator.comparing(Estudiante::edad).reversed();
+        var estudiantesOrdenados = estudiantes.stream().sorted(comparador).toList();
+        return Collections.unmodifiableCollection(estudiantesOrdenados);
+    }
+
+    /**
+     * Método para obtener la colección NO modificable de los estudiantes del curso que son menores de edad
+     * 
+     * @return la colección NO modificable de los estudiantes del curso que son menores de edad.
+     */
+    public Collection<Estudiante> getListadoMenoresEdad() {
+        return estudiantes.stream()
+                .filter(estudiante -> estudiante.edad() < 18)
+                .toList();
+    }
+
     /**
      * Método privado para determinar si ya existe un estudiante registro en el
      * mismo número de identificación
@@ -75,14 +105,8 @@ public class Curso {
      *         registrado.
      */
     private boolean validarNumeroIdentificacionExiste(String numeroIdentificacion) {
-        boolean existe = false;
 
-        for (Estudiante estudiante : estudiantes) {
-            if (estudiante.numeroIdentificacion().equals(numeroIdentificacion)) {
-                existe = true;
-            }
-        }
-
-        return existe;
+        Predicate<Estudiante> condicion = estudiante -> estudiante.numeroIdentificacion().equals(numeroIdentificacion);
+        return estudiantes.stream().filter(condicion).findAny().isPresent();
     }
 }

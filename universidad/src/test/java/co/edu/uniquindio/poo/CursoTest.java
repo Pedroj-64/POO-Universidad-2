@@ -8,9 +8,12 @@
 package co.edu.uniquindio.poo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +48,7 @@ public class CursoTest {
         var estudiante = new Estudiante("Camila", "Alzate Rios", "109453264", "camila@uniquindio.edu.co", "315635674",
                 18);
 
-        curso.registrarEstudiante(estudiante);
+        curso.agregarEstudiante(estudiante);
 
         assertTrue(curso.getEstudiantes().contains(estudiante));
         assertEquals(1, curso.getEstudiantes().size());
@@ -79,12 +82,88 @@ public class CursoTest {
         var estudiante2 = new Estudiante("Rodrigo", "Calderon", "109453264", "rodrigo@uniquindio.edu.co", "3223451278",
                 19);
 
-        curso.registrarEstudiante(estudiante1);
+        curso.agregarEstudiante(estudiante1);
 
-        assertThrows(Throwable.class, () -> curso.registrarEstudiante(estudiante2));
+        assertThrows(Throwable.class, () -> curso.agregarEstudiante(estudiante2));
 
         LOG.info("Finalización agregarEstudianteRepetido");
     }
 
-   
+    /**
+     * Prueba para verificar el obtener un listado alfabético
+     */
+    @Test
+    public void obtenerListadoAlfabetico() {
+        LOG.info("Inicio obtenerListadoAlfabetico");
+
+        var curso = new Curso("Programación I");
+
+        var camila = new Estudiante("Camila", "Alzate Rios", "109453264", "camila@uniquindio.edu.co", "315635674", 15);
+        var xiomara = new Estudiante("Xiomara", "Gomez", "109445634", "xiomara@uniquindio.edu.co", "3148763412", 31);
+        var ana = new Estudiante("Ana Maria", "Quintero", "109498764", "anamaria@uniquindio.edu.co", "3137442312", 28);
+        var yudi = new Estudiante("Yudi", "Pulgarin", "1092394924", "yudi@uniquindio.edu.co", "3218341234", 17);
+
+        curso.agregarEstudiante(camila);
+        curso.agregarEstudiante(xiomara);
+        curso.agregarEstudiante(ana);
+        curso.agregarEstudiante(yudi);
+
+        Collection<Estudiante>  listaEsperada = List.of(ana, camila, xiomara, yudi);
+
+        assertIterableEquals(listaEsperada, curso.getListadoAlfabetico());
+
+        LOG.info("Finalización obtenerListadoAlfabetico");
+    }
+
+    /**
+     * Prueba para verificar el obtener un listado por edad de forma descendente
+     */
+    @Test
+    public void obtenerListadoEdadDescente() {
+        LOG.info("Inicio obtenerListadoEdadDescente");
+
+        var curso = new Curso("Programación I");
+
+        var camila = new Estudiante("Camila", "Alzate Rios", "109453264", "camila@uniquindio.edu.co", "315635674", 15);
+        var xiomara = new Estudiante("Xiomara", "Gomez", "109445634", "xiomara@uniquindio.edu.co", "3148763412", 31);
+        var ana = new Estudiante("Ana Maria", "Quintero", "109498764", "anamaria@uniquindio.edu.co", "3137442312", 28);
+        var yudi = new Estudiante("Yudi", "Pulgarin", "1092394924", "yudi@uniquindio.edu.co", "3218341234", 17);
+
+        curso.agregarEstudiante(camila);
+        curso.agregarEstudiante(xiomara);
+        curso.agregarEstudiante(ana);
+        curso.agregarEstudiante(yudi);
+
+        var listaEsperada = List.of(xiomara, ana, yudi, camila);
+
+        assertIterableEquals(listaEsperada, curso.getListadoEdadDescente());
+
+        LOG.info("Finalización obtenerListadoEdadDescente");
+    }
+
+    /**
+     * Prueba para verificar el obtener un listado de los menores de edad
+     */
+    @Test
+    public void obtenerListadoMenoresEdad() {
+        LOG.info("Inicio obtenerListadoMenoresEdad");
+
+        var curso = new Curso("Programación I");
+
+        var camila = new Estudiante("Camila", "Alzate Rios", "109453264", "camila@uniquindio.edu.co", "315635674", 15);
+        var xiomara = new Estudiante("Xiomara", "Gomez", "109445634", "xiomara@uniquindio.edu.co", "3148763412", 31);
+        var ana = new Estudiante("Ana Maria", "Quintero", "109498764", "anamaria@uniquindio.edu.co", "3137442312", 28);
+        var yudi = new Estudiante("Yudi", "Pulgarin", "1092394924", "yudi@uniquindio.edu.co", "3218341234", 17);
+
+        curso.agregarEstudiante(camila);
+        curso.agregarEstudiante(xiomara);
+        curso.agregarEstudiante(ana);
+        curso.agregarEstudiante(yudi);
+
+        Collection<Estudiante>  listaEsperada = List.of(camila, yudi);
+
+        assertIterableEquals(listaEsperada, curso.getListadoMenoresEdad());
+
+        LOG.info("Finalización obtenerListadoMenoresEdad");
+    }
 }
